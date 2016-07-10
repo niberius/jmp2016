@@ -9,15 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>provider</artifactId>
+    <artifactId>utils</artifactId>
 
-    <description>gdeposylka.ru API implementation</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.zoltor.jmp2016</groupId>
-            <artifactId>communicator</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 </project>
