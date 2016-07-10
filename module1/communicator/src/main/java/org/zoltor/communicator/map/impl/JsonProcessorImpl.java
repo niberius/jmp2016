@@ -40,16 +40,16 @@ public class JsonProcessorImpl implements JsonProcessor {
             if (simpleObjectValue != null) {
                 result.put(name, simpleObjectValue);
                 continue;
-            }
-            if (fieldType.equals(List.class)) {
+            } else if (fieldType.equals(List.class)) {
                 List objects = ((List) value);
                 JSONArray jsonArray = new JSONArray();
                 for (Object object : objects) {
                     jsonArray.put(getJsonObject(object));
                 }
                 result.put(name, jsonArray);
+            } else {
+                result.put(name, getJsonObject(value));
             }
-
         }
         return (T) result;
     }
@@ -67,8 +67,7 @@ public class JsonProcessorImpl implements JsonProcessor {
                 Object simpleValueObject = getPrimitiveValue(oneObject);
                 if (simpleValueObject != null) {
                     setValueToField(field, simpleValueObject, responseObject);
-                }
-                if (field.getType().equals(List.class)) {
+                } else if (field.getType().equals(List.class)) {
                     ParameterizedType genericFieldType = (ParameterizedType) field.getGenericType();
                     Type listType = genericFieldType.getActualTypeArguments()[0];
                     List<Object> fieldList = new ArrayList<>();
@@ -80,6 +79,8 @@ public class JsonProcessorImpl implements JsonProcessor {
                         fieldList.add(getObjectFromJson(jsonObjectFromList.toString(), toReturnObject.getClass()));
                     }
                     setValueToField(field, fieldList, responseObject);
+                } else {
+                    setValueToField(field, getObjectFromJson(oneObject.toString(), field.getType()), responseObject);
                 }
             }
             return responseObject;

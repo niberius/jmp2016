@@ -17,8 +17,8 @@ import static org.junit.Assert.assertEquals;
 public class JsonProcessorTest {
 
     private JsonProcessor jsonProcessor = new JsonProcessorImpl();
-    private static final String EXPECTED_JSON_REQUEST = "{\"stringVar\":\"Hello \\\"test\\\"\",\"StringList\":[\"Bla1\",\"Bla2\"],\"Dummies\":[{\"dummyVal1\":\"xyz\",\"dummyVal2\":false},{\"dummyVal1\":\"xyz\",\"dummyVal2\":false}],\"intVar\":2}";
-    private static final String EXPECTED_JSON_RESPONSE = "{\"stringVar\":\"Oh \\\"NO!\\\"\",\"StringList\":[\"AAA\",\"BBB\"],\"Dummies\":[{\"dummyVal1\":\"dummy1\",\"dummyVal2\":true},{\"dummyVal1\":\"dummy2\",\"dummyVal2\":true}],\"intVar\":13}";
+    private static final String EXPECTED_JSON_REQUEST = "{\"stringVar\":\"Hello \\\"test\\\"\",\"StringList\":[\"Bla1\",\"Bla2\"],\"SingleDummy\":{\"dummyVal1\":\"xyz\",\"dummyVal2\":false},\"Dummies\":[{\"dummyVal1\":\"xyz\",\"dummyVal2\":false},{\"dummyVal1\":\"xyz\",\"dummyVal2\":false}],\"intVar\":2}";
+    private static final String EXPECTED_JSON_RESPONSE = "{\"stringVar\":\"Oh \\\"NO!\\\"\",\"StringList\":[\"AAA\",\"BBB\"],\"Dummies\":[{\"dummyVal1\":\"dummy1\",\"dummyVal2\":true},{\"dummyVal1\":\"dummy2\",\"dummyVal2\":true}],\"intVar\":13,\"SingleDummy\":{\"dummyVal1\":\"single\",\"dummyVal2\":false}}";
 
     public static class SimpleRequest {
         @JsonItem("stringVar")
@@ -29,6 +29,8 @@ public class JsonProcessorTest {
         private List<Dummy> dummies = new ArrayList<>();
         @JsonItem("StringList")
         private List<String> strings = new ArrayList<>();
+        @JsonItem("SingleDummy")
+        private Dummy oneDummy = new Dummy();
 
         public SimpleRequest() {
             dummies.add(new Dummy());
@@ -68,6 +70,14 @@ public class JsonProcessorTest {
         public void setStrings(List<String> strings) {
             this.strings = strings;
         }
+
+        public Dummy getOneDummy() {
+            return oneDummy;
+        }
+
+        public void setOneDummy(Dummy oneDummy) {
+            this.oneDummy = oneDummy;
+        }
     }
 
     public static class Dummy {
@@ -97,7 +107,6 @@ public class JsonProcessorTest {
     }
 
     @Test
-    @Ignore
     public void testGetJson() {
         String json = jsonProcessor.getJson(new SimpleRequest());
         assertEquals(EXPECTED_JSON_REQUEST, json);
@@ -112,7 +121,8 @@ public class JsonProcessorTest {
         assertEquals("dummy1", simpleRequest.getDummies().get(0).getDummyVal1());
         assertEquals(true, simpleRequest.getDummies().get(0).isDummyVal2());
         assertEquals("dummy2", simpleRequest.getDummies().get(1).getDummyVal1());
-        assertEquals(true, simpleRequest.getDummies().get(1).isDummyVal2());
+        assertEquals("single", simpleRequest.getOneDummy().getDummyVal1());
+        assertEquals(false, simpleRequest.getOneDummy().isDummyVal2());
     }
 
 }
