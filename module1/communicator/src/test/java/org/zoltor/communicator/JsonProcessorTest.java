@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by zoltor on 09/07/16.
@@ -113,7 +114,7 @@ public class JsonProcessorTest {
     }
 
     @Test
-    public void testGetObjectsFromJson() {
+    public void testGetObjectFromJson() {
         SimpleRequest simpleRequest = jsonProcessor.getObjectFromJson(EXPECTED_JSON_RESPONSE, SimpleRequest.class);
         assertEquals("Oh \"NO!\"", simpleRequest.getStringVar());
         assertEquals(13, simpleRequest.getIntVar());
@@ -125,4 +126,43 @@ public class JsonProcessorTest {
         assertEquals(false, simpleRequest.getOneDummy().isDummyVal2());
     }
 
+    @Test
+    public void testGetJsonFromObjects() {
+        List<SimpleRequest> simpleRequests = new ArrayList<>();
+        simpleRequests.add(new SimpleRequest());
+        simpleRequests.add(new SimpleRequest());
+        String json = jsonProcessor.getJsonFromObjects(simpleRequests);
+        assertEquals(getJsonArray(EXPECTED_JSON_REQUEST, EXPECTED_JSON_REQUEST), json);
+    }
+
+    @Test
+    public void testGetObjectsFromJson() {
+        List<SimpleRequest> simpleRequests = jsonProcessor.getObjectsFromJson(
+                getJsonArray(EXPECTED_JSON_RESPONSE, EXPECTED_JSON_RESPONSE), SimpleRequest.class);
+        assertTrue(simpleRequests.size() == 2);
+        for (SimpleRequest simpleRequest : simpleRequests) {
+            assertEquals("Oh \"NO!\"", simpleRequest.getStringVar());
+            assertEquals(13, simpleRequest.getIntVar());
+            assertEquals("[AAA, BBB]", simpleRequest.getStrings().toString());
+            assertEquals("dummy1", simpleRequest.getDummies().get(0).getDummyVal1());
+            assertEquals(true, simpleRequest.getDummies().get(0).isDummyVal2());
+            assertEquals("dummy2", simpleRequest.getDummies().get(1).getDummyVal1());
+            assertEquals("single", simpleRequest.getOneDummy().getDummyVal1());
+            assertEquals(false, simpleRequest.getOneDummy().isDummyVal2());
+        }
+    }
+
+    private String getJsonArray(String... objects) {
+        StringBuilder sb = new StringBuilder("[");
+        int objectsCount = objects.length;
+        int i = 1;
+        for (String object : objects) {
+            sb.append(object);
+            if (i < objectsCount) {
+                sb.append(",");
+            }
+            i++;
+        }
+        return sb.append("]").toString();
+    }
 }

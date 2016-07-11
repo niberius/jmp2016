@@ -7,7 +7,9 @@ import org.zoltor.communicator.map.impl.JsonProcessorImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +33,10 @@ class JsonHttpClient extends BaseHttpClient {
         return (responseClass == null) ? (T) responseBody : jsonProcessor.getObjectFromJson(responseBody, responseClass);
     }
 
-
-
+    @Override
+    public <T, R> List<T> execute(String url, HttpMethod httpMethod, List<R> requestObjects, Class<T> responseClass) throws IOException {
+        String requestBody = jsonProcessor.getJsonFromObjects(requestObjects);
+        String responseBody = getResponse(url, httpMethod, requestBody);
+        return jsonProcessor.getObjectsFromJson(responseBody, responseClass);
+    }
 }

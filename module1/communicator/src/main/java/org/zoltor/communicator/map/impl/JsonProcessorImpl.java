@@ -24,6 +24,25 @@ public class JsonProcessorImpl implements JsonProcessor {
         return getJsonObject(annotatedRequestObject).toString();
     }
 
+    @Override
+    public <R> String getJsonFromObjects(List<R> annotatedRequestObjects) {
+        JSONArray jsonArray = new JSONArray();
+        for (R annotatedRequestObject : annotatedRequestObjects) {
+            jsonArray.put(getJsonObject(annotatedRequestObject));
+        }
+        return jsonArray.toString();
+    }
+
+    @Override
+    public <T> List<T> getObjectsFromJson(String jsonString, Class<T> responseClass) {
+        List<T> result = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray(jsonString);
+        for (Object object : jsonArray) {
+            result.add(getObjectFromJson(object.toString(), responseClass));
+        }
+        return result;
+    }
+
     @SuppressWarnings("unchecked")
     private <R, T> T getJsonObject(R annotatedRequestObject) {
         Object simpleObjectValue = getPrimitiveValue(annotatedRequestObject);
@@ -39,7 +58,6 @@ public class JsonProcessorImpl implements JsonProcessor {
             simpleObjectValue = getPrimitiveValue(value);
             if (simpleObjectValue != null) {
                 result.put(name, simpleObjectValue);
-                continue;
             } else if (fieldType.equals(List.class)) {
                 List objects = ((List) value);
                 JSONArray jsonArray = new JSONArray();
