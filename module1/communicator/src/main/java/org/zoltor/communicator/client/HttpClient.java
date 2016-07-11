@@ -15,4 +15,5 @@ public interface HttpClient {
     <T, R> List<T> execute(String url, HttpMethod httpMethod, List<R> requestObjects, Class<T> responseClass) throws IOException;
     void setHeaders(Map<String, String> headers);
     int getResponseCode();
+    String getRawResponse();
 }

@@ -21,7 +21,7 @@ public class JsonHttpClientTest {
 
     @Test
     public void testGetGoogle() throws IOException {
-        String response = httpClient.execute("https://google.com", HttpMethod.GET, null, null);
+        String response = httpClient.execute("https://google.com", HttpMethod.GET, "", null);
         assertEquals(200, httpClient.getResponseCode());
         assertFalse(response.isEmpty());
     }

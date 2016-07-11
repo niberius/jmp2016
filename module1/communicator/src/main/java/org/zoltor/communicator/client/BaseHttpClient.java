@@ -23,6 +23,7 @@ public abstract class BaseHttpClient implements HttpClient {
     private final Map<String, String> headers = new HashMap<>();
     private HttpURLConnection connection;
     private int responseCode = -1;
+    private String rawResponse;
 
     protected void openConnectionWithHeaders(String toUrl) throws IOException {
         URL url = new URL(toUrl);
@@ -74,6 +75,12 @@ public abstract class BaseHttpClient implements HttpClient {
             response.append(line);
         }
         bufferedReader.close();
-        return response.toString();
+        rawResponse = response.toString();
+        return rawResponse;
+    }
+
+    @Override
+    public String getRawResponse() {
+        return rawResponse;
     }
 }
