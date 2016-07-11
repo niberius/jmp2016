@@ -11,13 +11,22 @@
 
     <artifactId>provider</artifactId>
 
-    <description>gdeposylka.ru API implementation</description>
+    <description>JsonPlaceholder API implementation</description>
 
     <dependencies>
         <dependency>
             <groupId>org.zoltor.jmp2016</groupId>
             <artifactId>communicator</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${module.communicator.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zoltor.jmp2016</groupId>
+            <artifactId>utils</artifactId>
+            <version>${module.utils.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
 </project>

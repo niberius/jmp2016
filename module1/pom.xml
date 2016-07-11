@@ -44,6 +44,9 @@
     <properties>
         <junit.ver>4.12</junit.ver>
         <json.ver>20160212</json.ver>
+        <module.communicator.ver>1.0-SNAPSHOT</module.communicator.ver>
+        <module.utils.ver>1.0-SNAPSHOT</module.utils.ver>
+        <module.provider.ver>1.0-SNAPSHOT</module.provider.ver>
     </properties>
 
     <dependencyManagement>

@@ -19,7 +19,6 @@ import java.util.Map;
 // TODO Is this thread-safe?
 public abstract class BaseHttpClient implements HttpClient {
 
-    private static final String DEFAULT_CHARSET = "UTF-8";
     private final Map<String, String> headers = new HashMap<>();
     private HttpURLConnection connection;
     private int responseCode = -1;
@@ -29,8 +28,7 @@ public abstract class BaseHttpClient implements HttpClient {
         URL url = new URL(toUrl);
         connection = (HttpURLConnection) url.openConnection();
         for (String headerName : headers.keySet()) {
-            connection.setRequestProperty(headerName, URLEncoder.encode(headers.get(headerName),
-                    Charset.forName(DEFAULT_CHARSET).displayName()));
+            connection.setRequestProperty(headerName, headers.get(headerName));
         }
     }
 

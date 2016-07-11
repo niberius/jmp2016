@@ -23,6 +23,7 @@ class JsonHttpClient extends BaseHttpClient {
         Map<String, String> jsonHeaders = new HashMap<>();
         jsonHeaders.put("Accept", "application/json");
         jsonHeaders.put("Content-Type", "application/json");
+        jsonHeaders.put("User-Agent", "Json HTTP Client by ZoLToR v1.0");
         setHeaders(jsonHeaders);
     }
 
