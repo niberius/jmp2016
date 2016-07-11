@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.zoltor.provider.jsonplaceholder.controller.UserController;
 import org.zoltor.provider.jsonplaceholder.entity.User;
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,7 +17,7 @@ public class UserControllerTest {
     private UserController userController = new UserController();
 
     @Test
-    public void testGetUserById() {
+    public void testGetUserById() throws IOException {
         User user = userController.getUserById(1);
         assertEquals(1, user.getId());
         assertEquals("Leanne Graham", user.getName());
