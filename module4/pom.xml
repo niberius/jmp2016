@@ -8,5 +8,33 @@
     <artifactId>module4</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <description>
+        This is homework for the module 4 - Memory Management. There are 3 classes with main methods to invoke
+        OutOfMemoryError for Heap, MetaSpace and StackOverflowError
+    </description>
+    <developers>
+        <developer>
+            <name>Pavel Ordenko</name>
+            <roles>
+                <role>JMP 2016 Mentee</role>
+                <role>Java jedi</role>
+            </roles>
+        </developer>
+    </developers>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

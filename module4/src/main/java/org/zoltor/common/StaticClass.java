@@ -1,7 +1,7 @@
-package org.zoltor.error;
+package org.zoltor.common;
 
 /**
- * Created by Pavel_Ardenka on 01/08/2016.
+ * Created by zoltor on 01/08/2016.
  */
 public class StaticClass {
 
