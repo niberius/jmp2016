@@ -2,6 +2,7 @@ package org.zoltor.common;
 
 /**
  * Created by zoltor on 01/08/2016.
+ * Just a class with some static variables
  */
 public class StaticClass {
 
