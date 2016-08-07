@@ -88,7 +88,7 @@ public abstract class BaseClassLoader extends ClassLoader {
                 results.add(SEMAPHORE_RESOURCE_PATH.replace("/", ".") + "." + semaphoreClassFile.getName().replace(".class", ""));
             }
         } catch (IOException | URISyntaxException | NullPointerException e) {
-            System.out.println("Unable to get list of semaphores classes in path: " + SEMAPHORE_RESOURCE_PATH);
+            System.out.println("Unable to get the list of semaphore classes in the path: " + SEMAPHORE_RESOURCE_PATH);
         }
         return results;
     }
