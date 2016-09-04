@@ -35,6 +35,9 @@ public class Main {
         }
     }
 
+    /**
+     * Get and print the list of available seances on desirable date
+     */
     private static void getSeances() {
         while (true) {
             System.out.println("Please, enter a date to get available seances (DD/MM/YYYY or empty to get seances for today):");
@@ -64,6 +67,9 @@ public class Main {
         }
     }
 
+    /**
+     * Select desirable seance
+     */
     private static void selectSeance() {
         while (true) {
             System.out.println("Please, enter the number of seance:");
@@ -77,6 +83,9 @@ public class Main {
         }
     }
 
+    /**
+     * Book free place or free a busy place
+     */
     private static void bookOrFreePlace() {
         while (true) {
             System.out.println("Please, enter a row number:");
@@ -92,24 +101,46 @@ public class Main {
             }
             Place place = getSelectedSeancePlaceByRowAndSeat(rowNum, seatNum);
 
-            // Repeat cycle if the chosen place is already booked
-            if (!place.isFree()) {
-                System.out.println("You have chosen the place which was already booked by " + place.getVisitor().getFirstAndLastName());
-                continue;
+            System.out.println("What do you want to do? 1 - book place, 2 - free place:");
+            int decision = getParsedInt(SCANNER.nextLine());
+            if (decision == 1) {
+                // Repeat cycle if the chosen place is already booked
+                if (!place.isFree()) {
+                    System.out.println("You have chosen the place which was already booked by " + place.getVisitor().getFirstAndLastName());
+                    continue;
+                }
+                Human visitor = (Human) CTX.getBean(BeanName.VISITOR);
+                System.out.println("Please, enter your first name");
+                visitor.setFirstName(SCANNER.nextLine());
+                System.out.println("Please, enter your last name");
+                visitor.setLastName(SCANNER.nextLine());
+                place.setVisitor(visitor);
+                System.out.println("You successfully booked the place with row " + place.getRow() + " and seat " +
+                        place.getSeat() + " on the film '" + selectedSeance.getFilm().getName() + "' and date time " +
+                        selectedSeance.getDateTime() + "'. Have a nice time, enjoy! :)");
+            } else if(decision == 2) {
+                if (place.isFree()) {
+                    System.out.println("The place is already free. There is nothing to do.");
+                    continue;
+                }
+                place.setVisitor(null);
+            } else {
+                System.out.println("You have made incorrect choice");
             }
-            Human visitor = (Human) CTX.getBean(BeanName.VISITOR);
-            System.out.println("Please, enter your first name");
-            visitor.setFirstName(SCANNER.nextLine());
-            System.out.println("Please, enter your last name");
-            visitor.setLastName(SCANNER.nextLine());
-            place.setVisitor(visitor);
-            System.out.println("You successfully booked the place with row " + place.getRow() + " and seat " +
-                    place.getSeat() + " on the film '" + selectedSeance.getFilm().getName() + "' and date time " +
-                    selectedSeance.getDateTime() + "'. Have a nice time, enjoy! :)");
+
+
             break;
         }
     }
 
+    /**
+     * Get place in {@link #selectedSeance} by row number and seat number
+     *
+     * @param rowNum Row number
+     * @param seatNum Seat number
+     * @return Found place
+     * @throws IllegalArgumentException In case when there is no place exists with given rowNum and seatNum
+     */
     private static Place getSelectedSeancePlaceByRowAndSeat(int rowNum, int seatNum) {
         List<Place> seancePlaces = selectedSeance.getPlaces();
         for (Place place : seancePlaces) {
@@ -120,6 +151,12 @@ public class Main {
         throw new IllegalArgumentException("There is no place with " + rowNum + " row and " + seatNum + " seat");
     }
 
+    /**
+     * Parse integer in string and get result
+     *
+     * @param intAsString String representation of int
+     * @return Parsed integer or -1 if error occurred
+     */
     private static int getParsedInt(String intAsString) {
         try {
             return Integer.parseInt(intAsString);
@@ -128,6 +165,11 @@ public class Main {
         }
     }
 
+    /**
+     * Draw info about each seance in list to console
+     *
+     * @param seances List with seances {@link Seance}
+     */
     private static void drawPlacesForSeances(List<Seance> seances) {
         int seanceNumber = 1;
         for (Seance seance : seances) {

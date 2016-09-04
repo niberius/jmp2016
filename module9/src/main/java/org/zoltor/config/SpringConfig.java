@@ -17,14 +17,11 @@ import java.util.*;
 @Configuration
 public class SpringConfig {
 
+    // The number of available rows in the cinema hall
     private static final int HALL_ROWS = 10;
-    private static final int HALL_PLACES_PER_ROW = 30;
 
-    @Bean(name = BeanName.FILM)
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public Film getFilm() {
-        return new Film();
-    }
+    // The number of available seats per row in the cinema hall
+    private static final int HALL_PLACES_PER_ROW = 30;
 
     @Bean(name = BeanName.VISITOR)
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -65,6 +62,11 @@ public class SpringConfig {
         return seances;
     }
 
+    /**
+     * Generate the place number for seance
+     *
+     * @return List with FREE places
+     */
     public List<Place> getDefaultPlaces() {
         List<Place> places = new ArrayList<>();
         for (int rowNum = 1; rowNum <= HALL_ROWS; rowNum++) {
