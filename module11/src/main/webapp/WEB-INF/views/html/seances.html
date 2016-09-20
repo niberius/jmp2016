@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <title>Spring MVC view layer: Thymeleaf vs. JSP</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <!--
-        <link rel="stylesheet" type="text/css" media="all"
-              href="../../css/thvsjsp.css" th:href="@{/css/thvsjsp.css}"/>
-    -->
-</head>
+<head th:replace="fragments/head :: head"/>
 
 <body>
 
 <div>
-    <div th:each="seance : ${seanceList}">
-        <span>[[${seance.getFilm().getName()}]]</span>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Seances list</div>
+                <table class="table">
+                    <tr th:each="seance,status : ${seanceList}">
+                        <td><a th:text="${seance.getFilm().getName()}" th:href="${status.count}"></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
