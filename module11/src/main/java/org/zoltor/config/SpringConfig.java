@@ -9,9 +9,7 @@ import org.zoltor.pojo.Human;
 import org.zoltor.pojo.Place;
 import org.zoltor.pojo.Seance;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by zoltor on 04/09/16.
@@ -67,17 +65,19 @@ public class SpringConfig {
     /**
      * Generate the place number for seance
      *
-     * @return List with FREE places
+     * @return Map with FREE places. Key - is a row number. Value - is a places list
      */
-    public List<Place> getDefaultPlaces() {
-        List<Place> places = new ArrayList<>();
+    public Map<Integer, List<Place>> getDefaultPlaces() {
+        Map<Integer, List<Place>> places = new LinkedHashMap<>();
         for (int rowNum = 1; rowNum <= HALL_ROWS; rowNum++) {
+            List<Place> placesPerRow = new ArrayList<>();
             for (int seatNum = 1; seatNum <= HALL_PLACES_PER_ROW; seatNum++) {
                 Place place = new Place();
                 place.setRow(rowNum);
                 place.setSeat(seatNum);
-                places.add(place);
+                placesPerRow.add(place);
             }
+            places.put(rowNum, placesPerRow);
         }
         return places;
     }

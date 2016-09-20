@@ -6,8 +6,8 @@ package org.zoltor.config;
 public interface ViewName {
 
     String SEANCES = "seances";
-    String FILMS = "films";
-
-
+    String SEANCE_INFO = "seanceInfo";
+    String BOOKING_FORM = "bookingForm";
+    String ERROR = "error";
 
 }

@@ -2,6 +2,7 @@ package org.zoltor.pojo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zoltor on 04/09/16.
@@ -10,7 +11,7 @@ public class Seance {
 
     private Date dateTime;
     private Film film;
-    private List<Place> places;
+    private Map<Integer, List<Place>> places;
 
     public Date getDateTime() {
         return dateTime;
@@ -28,11 +29,11 @@ public class Seance {
         this.film = film;
     }
 
-    public List<Place> getPlaces() {
+    public Map<Integer, List<Place>> getPlaces() {
         return places;
     }
 
-    public void setPlaces(List<Place> places) {
+    public void setPlaces(Map<Integer, List<Place>> places) {
         this.places = places;
     }
 }

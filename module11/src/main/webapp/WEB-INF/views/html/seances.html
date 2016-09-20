@@ -13,9 +13,25 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Seances list</div>
                 <table class="table">
-                    <tr th:each="seance,status : ${seanceList}">
-                        <td><a th:text="${seance.getFilm().getName()}" th:href="${status.count}"></a></td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Film name</th>
+                            <th>Seance date</th>
+                        </tr>
+                    </thead>
+                    <tbody th:if="${not #lists.isEmpty(seanceList)}">
+                        <tr th:each="seance,status : ${seanceList}">
+                            <td th:text="${status.count}"></td>
+                            <td><a th:text="${seance.getFilm().getName()}" th:href="@{/seance/{id}(id=${status.count - 1})}"></a></td>
+                            <td th:text="${#calendars.format(seance.getDateTime(), 'dd MMMM yyyy, H:m')}"></td>
+                        </tr>
+                    </tbody>
+                    <tbody th:if="${#lists.isEmpty(seanceList)}">
+                        <tr>
+                            <td colspan="3">There are no available seances</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

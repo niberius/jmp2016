@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"/>
+
+<body>
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">Visitor info</div>
+                <div class="panel-body">
+                    <form th:action="@{/seance/{sId}/book/{rNum}/{sNum}/confirm(sId=${seanceId}, rNum=${rowNum}, sNum=${seatNum})}" method="post">
+                        <div class="input-group">
+                            <span class="input-group-addon">First Name</span>
+                            <input type="text" class="form-control" placeholder="First Name" name="firstName" />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">Last Name</span>
+                            <input type="text" class="form-control" placeholder="Last Name" name="lastName" />
+                        </div>
+                        <button type="submit" class="btn btn-default">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
