@@ -60,8 +60,7 @@ public class SeancesController extends BaseController {
     public String bookThePlaceAndOpenHome(@PathVariable("id") int id,
                                @PathVariable("rowNum") int rowNum,
                                @PathVariable("seatNum") int seatNum,
-                               @ModelAttribute("visitor") Human visitor/*,
-                               RedirectAttributes ra*/) {
+                               @ModelAttribute("visitor") Human visitor) {
         List<Seance> seanceList = (List) CTX.getBean(BeanName.SEANCES);
         Place place = seanceList.get(id).getPlaces().get(rowNum).get(seatNum - 1);
         if (!place.isFree()) {
