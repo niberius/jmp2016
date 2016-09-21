@@ -11,6 +11,7 @@
 <div>
     <div class="container">
         <div class="row">
+            <nav th:replace="fragments/navBar :: navBar"></nav>
             <div class="panel panel-default">
                 <div class="panel-heading">Places (The film is '[[${seance.getFilm().getName()}]]')</div>
                 <table class="table">

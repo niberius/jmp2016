@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +16,7 @@ public class SessionParamsController extends BaseController {
 
     @RequestMapping(value = "/lang", method = RequestMethod.POST)
     public String setLocale(@ModelAttribute("lang") String lang, HttpSession session) {
-        session.setAttribute("lang", lang);
+        session.setAttribute("locale", lang);
         return "redirect:/";
     }
 
