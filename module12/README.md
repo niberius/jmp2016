@@ -8,6 +8,13 @@ Static (html, css, js) publish to apache, dynamic to tomcat.  Test and write rea
 
 The simple app to deploy on Tomcat and Apache WebServer as server for the static content.
 
+Requirements:
+
+- Java8
+- Apache WebServer 2.4+
+- Tomcat 8+
+
+
 If you deployed app before, undeaploy it first:
 
 ```
