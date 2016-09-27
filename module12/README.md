@@ -8,7 +8,7 @@ Static (html, css, js) publish to apache, dynamic to tomcat.  Test and write rea
 
 The simple app to deploy on Tomcat and Apache WebServer as server for the static content.
 
-If you deployed app bedore,  undeaploy it first:
+If you deployed app before, undeaploy it first:
 
 ```
 http://localhost:8080/manager/text/undeploy?path=/module11
