@@ -21,7 +21,7 @@ If you deployed app before, undeaploy it first:
 http://localhost:8080/manager/text/undeploy?path=/module11
 ```
 
-Command to deply app (Tomcat should be started before):
+Command to deply app (Tomcat should be started before. Replace path to app WAR file to yours):
 
 ```
 http://localhost:8080/manager/text/deploy?path=/module11&war=file:/media/d/projects/jmp2016/module12/module11.war
@@ -167,6 +167,6 @@ For Tomcat config please make sure, that AJP support is enabled in ${CATALINA_HO
 <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
 ```
 
-COnfiguration is done. Start / Restart Tomcat and Apache and navigate to http://localhost/module11 
+Configuration is done. Start / Restart Tomcat and Apache and navigate to http://localhost/module11 
 
 Have fun! :)
