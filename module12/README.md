@@ -1,3 +1,11 @@
+The task is:
+
+```
+Configure the Tomcat and Apache integration with mod_jk.so module.
+Build multi-module web application and deploy with tomcat manager application (text/script mode). 
+Static (html, css, js) publish to apache, dynamic to tomcat.  Test and write readme, how mentor can deploy it and check that it is working.
+```
+
 The simple app to deploy on Tomcat and Apache WebServer as server for the static content.
 
 If you deployed app bedore,  undeaploy it first:
@@ -60,6 +68,20 @@ worker.loadbalancer.balance_workers=ajp13_worker
 
 Mod_jk config (replace paths to logs to appropriate on your system and path to workers.properties from the previous point). Do not forget to include it to loading by Apache config (e.g., via "IncludeOptional /path/to/mod_jk_config/jk.conf" in httpd.conf)!
 ```
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 <IfModule jk_module>
 
     # We need a workers file exactly once
@@ -137,5 +159,7 @@ For Tomcat config please make sure, that AJP support is enabled in ${CATALINA_HO
 ```
 <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
 ```
+
+COnfiguration is done. Start / Restart Tomcat and Apache and navigate to http://localhost/module11 
 
 Have fun! :)
