@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"/>
+
+<body>
+
+<div>
+    <div class="container">
+        <div class="row">
+            <nav th:replace="fragments/navBar :: navBar"></nav>
+            <div class="panel panel-default">
+                <div class="panel-heading">Seances list</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Film name</th>
+                            <th>Seance date</th>
+                        </tr>
+                    </thead>
+                    <tbody th:if="${not #lists.isEmpty(seanceList)}">
+                        <tr th:each="seance,status : ${seanceList}">
+                            <td th:text="${status.count}"></td>
+                            <td><a th:text="${seance.getFilm().getName()}" th:href="@{/seance/{id}(id=${status.count - 1})}"></a></td>
+                            <td th:text="${#calendars.format(seance.getDateTime(), 'dd MMMM yyyy, H:m')}"></td>
+                        </tr>
+                    </tbody>
+                    <tbody th:if="${#lists.isEmpty(seanceList)}">
+                        <tr>
+                            <td colspan="3">There are no available seances</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

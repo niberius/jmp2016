@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<nav class="navbar navbar-inverse" th:fragment="navBar">
+    <div class="btn-group">
+        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+            Language <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a class="lang_selection" id="en" href="javascript:void(0);">English</a>
+            </li>
+            <li>
+                <a class="lang_selection" id="ru" href="javascript:void(0);">Russian</a>
+            </li>
+        </ul>
+    </div>
+    <form id="select_lang" th:action="@{/{lang}(lang='lang')}" method="post">
+        <input type="hidden" name="lang" value="" />
+    </form>
+    <script type="text/javascript">
+            $('a.lang_selection').on('click', function() {
+                $('#select_lang > input').val($(this).attr('id'));
+                $('#select_lang').submit();
+            });
+    </script>
+</nav>
+</body>
+</html>

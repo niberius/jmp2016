@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"/>
+
+<body>
+
+<div>
+    <div class="container">
+        <div class="row">
+            <nav th:replace="fragments/navBar :: navBar"></nav>
+            <div class="panel panel-default">
+                <div class="panel-heading">Places (The film is '[[${seance.getFilm().getName()}]]')</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Row</th>
+                            <th th:colspan="${seance.getPlaces().get(1).size()}">Seat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="rowPlace : ${seance.getPlaces()}">
+                            <td th:text="${rowPlace.key}" />
+                            <td th:each="place : ${rowPlace.value}" th:class="${place.isFree()} ? 'success' : 'danger'">
+                                <a th:if="${place.isFree()}" th:href="@{/seance/{sId}/book/{rNum}/{sNum}(sId=${seanceId}, rNum=${place.getRow()}, sNum=${place.getSeat()})}" th:text="${place.getSeat()}" />
+                                <a th:if="${not place.isFree()}" href="javascript:void(0);" th:text="${place.getSeat()}" th:title="${'Booked by ' + place.getVisitor().getFirstAndLastName()}" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
