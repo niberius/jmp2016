@@ -10,9 +10,9 @@ Based on homework for Module11. That project was splited on two modules:
 - POJO
 - Web
 
-POM files was reworked (packaging for root - pom, for POJO - not specified (it means that jar will be used by default), for Web - war).
+POM files were reworked (packaging for root - pom, for POJO - not specified (it means that jar will be used by default), for Web - war).
 
-All "magic" described in root POM. It contains dependency management section and profiles fo running / deploying app.
+All "magic" described in root POM. It contains dependency management section and profiles for running / deploying the app.
 
 To install dependencies to local repository, build all modules and run the app on embedded Tomcat7:
 ```
