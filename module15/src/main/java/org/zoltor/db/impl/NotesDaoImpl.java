@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by zoltor on 18/10/16.
+ * DAO implementation for Notes
  */
 public class NotesDaoImpl extends AbstractGenericDaoImpl<Note> implements NotesDao {
 

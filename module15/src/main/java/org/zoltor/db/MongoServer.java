@@ -37,6 +37,9 @@ public class MongoServer {
     public void stop() {
         mongodExecutable.stop();
         mongodProcess.stop();
+        mongodExecutable = null;
+        mongodProcess = null;
+        instance = null;
     }
 
     public int getPort() {

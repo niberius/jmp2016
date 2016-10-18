@@ -6,7 +6,6 @@
 
     <groupId>org.zoltor.jmp2016</groupId>
     <artifactId>module15</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <description>Simple MongoDB app</description>
@@ -38,9 +37,8 @@
     <properties>
         <junit.ver>4.12</junit.ver>
         <json.ver>20160212</json.ver>
-        <module.communicator.ver>1.0-SNAPSHOT</module.communicator.ver>
-        <module.utils.ver>1.0-SNAPSHOT</module.utils.ver>
-        <module.provider.ver>1.0-SNAPSHOT</module.provider.ver>
+        <embed.mongo.ver>1.50.5</embed.mongo.ver>
+        <morphia.ver>1.2.1</morphia.ver>
     </properties>
 
     <dependencies>
@@ -57,12 +55,12 @@
         <dependency>
             <groupId>de.flapdoodle.embed</groupId>
             <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <version>1.50.5</version>
+            <version>${embed.mongo.ver}</version>
         </dependency>
         <dependency>
             <groupId>org.mongodb.morphia</groupId>
             <artifactId>morphia</artifactId>
-            <version>1.2.1</version>
+            <version>${morphia.ver}</version>
         </dependency>
     </dependencies>
 
@@ -77,28 +75,19 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-            <!--<plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.5.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <includeProjectDependencies>true</includeProjectDependencies>
-                    <includePluginDependencies>true</includePluginDependencies>
-                    <executable>java</executable>
-                    <arguments>
-                        <argument>-classpath</argument>
-                        <classpath/>
-                    </arguments>
-                    <mainClass>org.zoltor.application.main.Main</mainClass>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.zoltor.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 

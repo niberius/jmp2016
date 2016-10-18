@@ -13,7 +13,6 @@ import java.util.Date;
  */
 @Entity("note")
 @Indexes(@Index(fields = @Field(value = "$**", type = IndexType.TEXT)))
-
 public class Note {
 
     @Id
@@ -24,6 +23,7 @@ public class Note {
 
     @PrePersist
     public void prePersist() {
+        // Set current date-time if it is null
         timeStamp = new Date();
     }
 
