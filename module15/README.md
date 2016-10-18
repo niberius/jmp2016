@@ -1,6 +1,7 @@
 The simple console app represents a notebook. All data stored in MongoDB.
 
 There is ability to:
+
 1. Create a note (with date, tag and text)
 2. List all notes
 3. Find the notes byt tag
