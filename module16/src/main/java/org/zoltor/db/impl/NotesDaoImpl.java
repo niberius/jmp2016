@@ -1,0 +1,31 @@
+package org.zoltor.db.impl;
+
+import org.zoltor.db.api.NotesDao;
+import org.zoltor.pojo.Note;
+
+import java.util.List;
+
+/**
+ * Created by zoltor on 18/10/16.
+ * DAO implementation for Notes
+ */
+public class NotesDaoImpl extends AbstractGenericDaoImpl<Note> implements NotesDao {
+
+    @Override
+    public List<Note> getByTag(String tagName) {
+        return dataStore.createQuery(typeClass)
+                .field("tag").containsIgnoreCase(tagName).asList();
+    }
+
+    @Override
+    public List<Note> getByText(String noteText) {
+        return dataStore.createQuery(typeClass)
+                .field("noteText").containsIgnoreCase(noteText).asList();
+    }
+
+    @Override
+    public List<Note> getByTagOrText(String noteTextOrTag) {
+        return dataStore.createQuery(typeClass).search(noteTextOrTag).asList();
+    }
+
+}
