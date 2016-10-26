@@ -5,6 +5,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.query.Query;
+import org.zoltor.db.MongoServer;
 import org.zoltor.db.impl.NotesDaoImpl;
 import org.zoltor.pojo.Note;
 
@@ -20,8 +22,14 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class NotesDaoImplTest {
 
+    @InjectMocks
+    private NotesDaoImpl notesDao = new NotesDaoImpl();
+
     @Mock
-    private NotesDaoImpl notesDao;
+    private Datastore dataStore;
+
+    @Mock
+    private Query<Note> query;
 
     @Before
     public void setUp() {
@@ -32,7 +40,11 @@ public class NotesDaoImplTest {
         List<Note> notes = new ArrayList<>();
         notes.add(note);
         notes.add(note2);
-        when(notesDao.getByTag("ba")).thenReturn(notes);
+        when(dataStore.createQuery(Note.class)).thenReturn(query);
+        when(query.asList()).thenReturn(notes);
+        notesDao.getAll();
+        notesDao.save(note);
+        notesDao.save(note2);
     }
 
     @Test
