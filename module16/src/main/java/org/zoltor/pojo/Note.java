@@ -68,4 +68,27 @@ public class Note {
                 ", noteText='" + noteText + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Note note = (Note) o;
+
+        if (id != null ? !id.equals(note.id) : note.id != null) return false;
+        if (timeStamp != null ? !timeStamp.equals(note.timeStamp) : note.timeStamp != null) return false;
+        if (tag != null ? !tag.equals(note.tag) : note.tag != null) return false;
+        return noteText != null ? noteText.equals(note.noteText) : note.noteText == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (timeStamp != null ? timeStamp.hashCode() : 0);
+        result = 31 * result + (tag != null ? tag.hashCode() : 0);
+        result = 31 * result + (noteText != null ? noteText.hashCode() : 0);
+        return result;
+    }
 }
