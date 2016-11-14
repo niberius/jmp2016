@@ -34,6 +34,9 @@ To run the tests on your own Tomcat:
 1. Build WAR: mvn package -DskipTests
 2. Deploy ./target/module17.war to your Tomcat
 3. For default Tomcat instance address:port: mvn test
+
 OR
+
 4. For custom Tomcat instance address:port: mvn test -DtomcatAddress=localhost:8080
+
 Where localhost - the host of your tomcat and 8080 - appropriate port
