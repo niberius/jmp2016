@@ -1,0 +1,16 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+
+    <persistence-unit name="movie-unit">
+        <jta-data-source>movieDatabase</jta-data-source>
+        <non-jta-data-source>movieDatabaseUnmanaged</non-jta-data-source>
+        <class>org.zoltor.db.entities.Address</class>
+        <class>org.zoltor.db.entities.Employee</class>
+        <class>org.zoltor.db.entities.EmployeePersonalInfo</class>
+        <class>org.zoltor.db.entities.Project</class>
+        <class>org.zoltor.db.entities.Unit</class>
+
+        <properties>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+        </properties>
+    </persistence-unit>
+</persistence>
