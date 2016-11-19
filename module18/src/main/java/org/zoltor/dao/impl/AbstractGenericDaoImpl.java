@@ -1,9 +1,14 @@
 package org.zoltor.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.zoltor.dao.GenericDao;
+import org.zoltor.db.h2.DataGenerator;
 
 import javax.persistence.EntityManager;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -13,8 +18,11 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public abstract class AbstractGenericDaoImpl<T> implements GenericDao<T> {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "employee-unit", type = PersistenceContextType.EXTENDED)
     private EntityManager em;
+
+    @Autowired
+    private DataGenerator dataGenerator;
 
     // Class of DAO entity
     protected Class<T> typeClass;
@@ -25,27 +33,32 @@ public abstract class AbstractGenericDaoImpl<T> implements GenericDao<T> {
     }
 
     @Override
+    @Transactional
     public List<T> getAll() {
         String findAllQuery = "SELECT e FROM " + typeClass.getName() + " e";
         return (List<T>) em.createQuery(findAllQuery).getResultList();
     }
 
     @Override
+    @Transactional
     public T getById(long id) {
         return em.find(typeClass, id);
     }
 
     @Override
+    @Transactional
     public void create(T entity) {
         em.persist(entity);
     }
 
     @Override
+    @Transactional
     public T update(T entity) {
         return em.merge(entity);
     }
 
     @Override
+    @Transactional
     public void delete(T entity) {
         em.remove(entity);
     }

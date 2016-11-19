@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+    <Resource id="myDatabase" type="DataSource">
+        JdbcDriver org.h2.Driver
+        JdbcUrl jdbc:h2:C:/temp/data
+        UserName sa
+        Password
+        JtaManaged true
+    </Resource>
+
+    <Resource id="myDatabaseUnmanaged" type="DataSource">
+        JdbcDriver org.h2.Driver
+        JdbcUrl jdbc:h2:C:/temp/data
+        UserName sa
+        Password
+        JtaManaged false
+    </Resource>
+</tomee>

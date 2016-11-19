@@ -10,7 +10,7 @@ public class DataGenerator {
     private DbServer db = new DbServer();
 
     @PostConstruct
-    public void createDables() {
+    public void createTables() {
         db.update("CREATE TABLE IF NOT EXISTS personal_info (" +
                 "id IDENTITY PRIMARY KEY," +
                 "first_name VARCHAR(100) NOT NULL," +

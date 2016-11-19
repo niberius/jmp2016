@@ -22,6 +22,7 @@ import java.util.List;
         "org.zoltor.db.h2",
         "org.zoltor.constants",
         "org.zoltor.dao",
+        "org.zoltor.rest.controller"
 })
 public class MvcConfig {
 
@@ -35,7 +36,7 @@ public class MvcConfig {
         return requestMappingHandlerAdapter;
     }
 
-    @Bean
+    @Bean(name = "dataGenerator", initMethod = "createTables")
     public DataGenerator getDataGenerator() {
         return new DataGenerator();
     }

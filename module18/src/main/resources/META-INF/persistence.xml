@@ -1,15 +1,17 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
 
-    <persistence-unit name="movie-unit">
-        <jta-data-source>movieDatabase</jta-data-source>
-        <non-jta-data-source>movieDatabaseUnmanaged</non-jta-data-source>
-        <class>org.zoltor.db.entities.Address</class>
+    <persistence-unit name="employee-unit" transaction-type="JTA">
+        <jta-data-source>openejb:Resource/myDatabase</jta-data-source>
+        <non-jta-data-source>openejb:Resource/myDatabaseUnmanaged</non-jta-data-source>
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <class>org.zoltor.db.entities.Employee</class>
+        <class>org.zoltor.db.entities.Address</class>
         <class>org.zoltor.db.entities.EmployeePersonalInfo</class>
         <class>org.zoltor.db.entities.Project</class>
         <class>org.zoltor.db.entities.Unit</class>
 
         <properties>
+            <property name="hibernate.dialect" value="import org.hibernate.dialect.H2Dialect" />
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
         </properties>
     </persistence-unit>
