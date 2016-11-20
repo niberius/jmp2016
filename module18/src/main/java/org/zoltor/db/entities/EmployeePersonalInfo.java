@@ -1,13 +1,18 @@
 package org.zoltor.db.entities;
 
+import org.hibernate.annotations.*;
 import org.zoltor.constants.EmployeeGender;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Created by Pavel Ordenko on 12/11/2016, 17:31.
  */
+@Entity
+@Table(name = "personal_info")
 public class EmployeePersonalInfo {
 
     @Id

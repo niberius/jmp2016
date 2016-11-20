@@ -1,8 +1,5 @@
 package org.zoltor.db.entities;
 
-import org.hibernate.annotations.ManyToAny;
-import org.hibernate.annotations.Table;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,7 +7,7 @@ import java.util.List;
  * Created by Pavel Ordenko on 12/11/2016, 17:38.
  */
 @Entity
-@Table(appliesTo = "project")
+@Table(name = "project")
 public class Project {
 
     @Id
