@@ -29,6 +29,9 @@ public class DbServer {
 
         // Connect to Database
         connectOrReconnect();
+        System.out.println("DB DATA:");
+        System.out.println(DB_URL);
+        System.out.println(DATA_H2_FILE);
     }
 
     public ResultSet select(String sqlScript, Object... objects) {

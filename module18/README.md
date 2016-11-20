@@ -21,7 +21,7 @@ Add Employee to Unit by id’s
 Assign Employee for Project by id’s
 ```
 
-Service API is not ready. EntityManager cannot be injected :( Null.
+Service API is not ready. Something wrong with DB - WIP
 
 To run on embedded TomEE container, use Maven:
 ```

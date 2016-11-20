@@ -1,12 +1,9 @@
 package org.zoltor.dao.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.zoltor.dao.GenericDao;
-import org.zoltor.db.h2.DataGenerator;
 
 import javax.persistence.EntityManager;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import java.lang.reflect.ParameterizedType;
@@ -20,9 +17,6 @@ public abstract class AbstractGenericDaoImpl<T> implements GenericDao<T> {
 
     @PersistenceContext(unitName = "employee-unit", type = PersistenceContextType.EXTENDED)
     private EntityManager em;
-
-    @Autowired
-    private DataGenerator dataGenerator;
 
     // Class of DAO entity
     protected Class<T> typeClass;

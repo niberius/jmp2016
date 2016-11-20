@@ -1,5 +1,7 @@
 package org.zoltor.rest.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +12,7 @@ import org.zoltor.db.entities.Address;
 import org.zoltor.db.entities.Employee;
 import org.zoltor.db.entities.EmployeePersonalInfo;
 
+import javax.ejb.EJB;
 import java.util.Date;
 
 /**
@@ -18,9 +21,11 @@ import java.util.Date;
 @RestController
 public class EmployeeController {
 
+    @Autowired
+    private EmployeeDao employeeDao;
+
     @RequestMapping(value = "/employee/1", method = RequestMethod.GET)
     public Employee read() {
-        EmployeeDao employeeDao = new EmployeeDaoImpl();
         Employee employee = new Employee();
         employee.setLogin("v.pupken");
         employee.setPassword("122345");

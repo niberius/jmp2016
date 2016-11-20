@@ -2,7 +2,7 @@
 <tomee>
     <Resource id="myDatabase" type="DataSource">
         JdbcDriver org.h2.Driver
-        JdbcUrl jdbc:h2:C:/temp/data
+        JdbcUrl jdbc:h2:./target/apache-tomee/temp/data
         UserName sa
         Password
         JtaManaged true
@@ -10,7 +10,7 @@
 
     <Resource id="myDatabaseUnmanaged" type="DataSource">
         JdbcDriver org.h2.Driver
-        JdbcUrl jdbc:h2:C:/temp/data
+        JdbcUrl jdbc:h2:./target/apache-tomee/temp/data
         UserName sa
         Password
         JtaManaged false

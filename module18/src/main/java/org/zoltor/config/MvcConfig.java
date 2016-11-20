@@ -22,6 +22,7 @@ import java.util.List;
         "org.zoltor.db.h2",
         "org.zoltor.constants",
         "org.zoltor.dao",
+        "org.zoltor.dao.impl",
         "org.zoltor.rest.controller"
 })
 public class MvcConfig {
